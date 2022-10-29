@@ -33,9 +33,14 @@ public class PaymentController {
         Payment payment = paymentService.getPaymentById(id);
         log.info("*****查询结果:{}", payment);
         if (payment != null) {
-            return new CommonResult(200, "查询成功服务端口："+serverPort, payment);
+            return new CommonResult(200, "查询成功服务端口：" + serverPort, payment);
         } else {
             return new CommonResult(444, "没有对应记录,查询ID: " + id, null);
         }
+    }
+
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
     }
 }
